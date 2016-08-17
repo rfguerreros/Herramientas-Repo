@@ -30,14 +30,16 @@ int main(){
     Units[i]=1;
   }
   
+
+
   Units[0]=0;
-  Units[1]=0;
-  Units[2]=3;
+  Units[1]=2;
   
   for(int i = 0; i < NumberUnits; i++){
     if (Units[i]==0) continue;
     for(int j = 0; j < Units[i]; j++){
-      Map.insert(pair<long,long>(C+j,Units[i]));
+      Map[C+j]=Units[i];
+      //Map.insert(pair<long,long>(C+j,Units[i]));
       Counter++;
     }
     C=Counter;
