@@ -10,16 +10,18 @@ using namespace std;
 
 int main(){
 
-  long NumberUnits = 1000;
+  ofstream salida("salida.data");
+
+  long NumberUnits = 10000;
 
   long Counter = 0;
   long C=0;
-  
+  long r,a,b,A,B;
+
   mt19937 randomGen(time(0));
   uniform_int_distribution <int> diceRoll (1, 100);
   uniform_int_distribution <int> randI (0,NumberUnits);
   
-
   map<int,int> Map;
   
   vector <long> Units;
@@ -29,26 +31,17 @@ int main(){
   for(int i = 0; i < NumberUnits; i++){
     Units[i]=1;
   }
-  
-
-
-  Units[0]=0;
-  Units[1]=2;
-  
+      
   for(int i = 0; i < NumberUnits; i++){
     if (Units[i]==0) continue;
     for(int j = 0; j < Units[i]; j++){
       Map[C+j]=Units[i];
-      //Map.insert(pair<long,long>(C+j,Units[i]));
       Counter++;
     }
     C=Counter;
-  
   }
-  
 
   
-  cout << Map[0] <<" "<< Map[1]<<" "<< Map[3]<< endl;
   
   return 0;
 }
