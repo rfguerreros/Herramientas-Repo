@@ -5,6 +5,7 @@
 #include<random>
 #include<ctime>
 #include<map>
+#include<fstream>
 
 using namespace std;
 
@@ -14,7 +15,7 @@ int main(){
   
   //Parametros de la simulacion
   long NumberUnits = 10000;
-  long time = 1000000;
+  long times = 1000000;
   long nu = 0.01;
 
   //Variables de contador
@@ -41,7 +42,7 @@ int main(){
   }
 
   //Inicio de iteracion temporal
-  for(int t=0;t<time;t++){
+  for(int t=0;t<times;t++){
   
     //Asignacion de peso de probabilidad dependiendo de poder de batalla
     for(int i = 0; i < NumberUnits; i++){
@@ -58,9 +59,9 @@ int main(){
     b=Map[a];
   
     //Si todas las unidades están sobre un componente del vector se reparten
-    if(Units[b]==NumberUnits){
+    /*if(Units[b]==NumberUnits){
     
-    }
+      }*/
     
     //A es variable aleatoria sobre los valores de Map, se evita que b=B
     do{
@@ -93,6 +94,26 @@ int main(){
   
   }
   //Fin iteracion temporal
+
+  //Busqueda de la casilla con mayor fuerza 
+  int q=Units[0];
+  for(int k=1;k<NumberUnits;k++){
+    if(Units[k]>q){
+      q=Units[k];
+    }
+  }
+  
+  //Cuenta de cuantas componentes del vector tienen cierta fuerza
+  long vcounter[q];
+  for(int i=1;i<=q;i++){
+    vcounter[i-1]=0;
+    for(int j=0;j<NumberUnits;j++){
+      if(Units[j]==i){
+	vcounter[i-1]++;
+      }
+    }
+    salida << i << "\t" << vcounter[i-1] << endl;
+  }
 
   return 0;
 }
